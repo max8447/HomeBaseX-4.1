@@ -1,0 +1,427 @@
+class AFortPlayerController : public APlayerController
+{
+public:
+	uint8                                        Pad_14C1[0x18];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	uint8                                        bFailedToRespawn : 1;                              // Mask: 0x1, PropSize: 0x10x698(0x1)(Net, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bIsDisconnecting : 1;                              // Mask: 0x2, PropSize: 0x10x698(0x1)(NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bIsBeingKicked : 1;                                // Mask: 0x4, PropSize: 0x10x698(0x1)(NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bHasInitiallySpawned : 1;                          // Mask: 0x8, PropSize: 0x10x698(0x1)(Net, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bAssignedStartSpawn : 1;                           // Mask: 0x10, PropSize: 0x10x698(0x1)(NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bReadyToStartMatch : 1;                            // Mask: 0x20, PropSize: 0x10x698(0x1)(NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bClientPawnIsLoaded : 1;                           // Mask: 0x40, PropSize: 0x10x698(0x1)(NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        BitPad_1A8 : 1;                                    // Fixing Bit-Field Size  [ Dumper-7 ]
+	uint8                                        Pad_14C2[0x3];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	struct FVector                               SpawnLoc;                                          // 0x69C(0xC)(Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	int32                                        NumPreviousSpawns;                                 // 0x6A8(0x4)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14C3[0x4];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	UMulticastDelegateProperty_                  OnBlueprintReadyCheckCompleted;                    // 0x6B0(0x10)(ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14C4[0x60];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	TArray<class AFortAIPawn*>                   ManagedAIs;                                        // 0x720(0x10)(ZeroConstructor, Transient, Protected, NativeAccessSpecifierProtected)
+	class AFortPlayerPawn*                       MyFortPawn;                                        // 0x730(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bHasClientFinishedLoading;                         // 0x738(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bHasServerFinishedLoading;                         // 0x739(0x1)(Net, ZeroConstructor, IsPlainOldData, RepNotify, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14C5[0x2];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	float                                        TimeStartedWaiting;                                // 0x73C(0x4)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	float                                        TimeFinishedNavigationBuild;                       // 0x740(0x4)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	struct FVector                               PendingSpectatorLocation;                          // 0x744(0xC)(IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TWeakObjectPtr<class AActor>                 ActorUnderReticle;                                 // 0x750(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TWeakObjectPtr<class AActor>                 AutoFireReticleTarget;                             // 0x758(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	float                                        AutoFireAcquisitionTime;                           // 0x760(0x4)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bAllowAutofireAtReticleTarget;                     // 0x764(0x1)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14C6[0x3];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	TWeakObjectPtr<class ABuildingWeakSpot>      WeakspotUnderReticle;                              // 0x768(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TArray<struct FBuildingWeakSpotData>         ActiveWeakSpots;                                   // 0x770(0x10)(ZeroConstructor, Transient, Protected, NativeAccessSpecifierProtected)
+	float                                        LastActiveTime;                                    // 0x780(0x4)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14C7[0x8C];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	float                                        AutoFireReticleWeaponDistanceScale;                // 0x810(0x4)(ZeroConstructor, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool                                         bSupportNextPieceAssist;                           // 0x814(0x1)(ZeroConstructor, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14C8[0x80B];                                   // Fixing Size After Last Property  [ Dumper-7 ]
+	class UAudioComponent*                       LongInteractAudioComponent;                        // 0x1020(0x8)(ExportObject, ZeroConstructor, Transient, InstancedReference, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14C9[0x18];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	class UFortInteractContextInfo*              PossibleInteractContextInfo;                       // 0x1040(0x8)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	class UFortInteractContextInfo*              InteractResponse;                                  // 0x1048(0x8)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14CA[0x5];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	bool                                         bWantsToSprint;                                    // 0x1055(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bHoldingSprint;                                    // 0x1056(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bSprintToggleable;                                 // 0x1057(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bSprintCancelsReload;                              // 0x1058(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bAutoRunOn;                                        // 0x1059(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bTapInteractEnabled;                               // 0x105A(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bTargetingToggleable;                              // 0x105B(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bMovementDisabledDueToCancellableAction;           // 0x105C(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bIsPlayerActivelyMoving;                           // 0x105D(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14CB[0x2];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	int32                                        InMovementCancellableAction;                       // 0x1060(0x4)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bHoldingUse;                                       // 0x1064(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bRetryUse;                                         // 0x1065(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bAllowRetryUse;                                    // 0x1066(0x1)(ZeroConstructor, Config, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bIsClientTimingOut;                                // 0x1067(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	float                                        ClientTimeoutBlockInputTime;                       // 0x1068(0x4)(Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	float                                        LastMoveInputTime;                                 // 0x106C(0x4)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	float                                        LastPressGamepadSprintTime;                        // 0x1070(0x4)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bAtNameBaseScreen;                                 // 0x1074(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bInventoryToggledByAlt;                            // 0x1075(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14CC[0x2];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	UMulticastDelegateProperty_                  OnSetFirstPersonCamera;                            // 0x1078(0x10)(ZeroConstructor, InstancedReference, BlueprintAssignable, Protected, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14CD[0x8];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	TSubclassOf<class UFortCinematicCamera>      CinematicCameraClassOverride;                      // 0x1090(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14CE[0x78];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	class UFortIndicatorManager*                 IndicatorManager;                                  // 0x1110(0x8)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	UMulticastDelegateProperty_                  OnUiChoiceCompleted;                               // 0x1118(0x10)(ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic)
+	UMulticastDelegateProperty_                  OnRegainedFocus;                                   // 0x1128(0x10)(ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14CF[0x388];                                   // Fixing Size After Last Property  [ Dumper-7 ]
+	bool                                         bIsInQuickToggleCursorMode;                        // 0x14C0(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
+	bool                                         bGamepadAbilityPending;                            // 0x14C1(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bForceAllowCursorMode;                             // 0x14C2(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
+	bool                                         bForceAllowCameraMode;                             // 0x14C3(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
+	bool                                         bDragDropPending;                                  // 0x14C4(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
+	bool                                         bSuppressEventNotifications;                       // 0x14C5(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
+	uint8                                        Pad_14D0[0x56];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	float                                        LastSpotTime;                                      // 0x151C(0x4)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TArray<TWeakObjectPtr<class AFortMarkActor>> CurrentMarks;                                      // 0x1520(0x10)(ZeroConstructor, Transient, Protected, UObjectWrapper, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14D1[0x50];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	class UFortGameplayAbility*                  PreviewAbility;                                    // 0x1580(0x8)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	struct FAIDirectorDebugInfo                  IntensityGraphInfo;                                // 0x1588(0x28)(Net, RepNotify, NativeAccessSpecifierPublic)
+	struct FAIDirectorDebugInfo                  PIDValuesGraphInfo;                                // 0x15B0(0x28)(Net, RepNotify, NativeAccessSpecifierPublic)
+	struct FAIDirectorDebugInfo                  PIDContributionsGraphInfo;                         // 0x15D8(0x28)(Net, RepNotify, NativeAccessSpecifierPublic)
+	class AFortCombatManager*                    CombatManager;                                     // 0x1600(0x8)(Net, ZeroConstructor, IsPlainOldData, RepNotify, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	class AFortAIDirectorDataManager*            AIDirectorDataManager;                             // 0x1608(0x8)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	class AFortMusicManager*                     MusicManager;                                      // 0x1610(0x8)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14D2[0x338];                                   // Fixing Size After Last Property  [ Dumper-7 ]
+	class UInputComponent*                       BuildPreviewModeInputComponent;                    // 0x1950(0x8)(ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	class ABuildingPlayerPrimitivePreview*       BuildPreviewMarker;                                // 0x1958(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bAllowBuildingPreviewAutoRotation;                 // 0x1960(0x1)(ZeroConstructor, Config, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14D3[0x10F];                                   // Fixing Size After Last Property  [ Dumper-7 ]
+	class ABuildingActor*                        TargetedBuilding;                                  // 0x1A70(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TSubclassOf<class ABuildingSMActor>          ContextualConversionClass;                         // 0x1A78(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TSoftObjectPtr<class USoundBase>             StartRepairSound;                                  // 0x1A80(0x28)(Transient, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TSoftObjectPtr<class USoundBase>             StartUpgradeSound;                                 // 0x1AA8(0x28)(Transient, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TArray<class ABuildingActor*>                HighlightedPrimaryBuildings;                       // 0x1AD0(0x10)(ZeroConstructor, Transient, Protected, NativeAccessSpecifierProtected)
+	TArray<class ABuildingActor*>                HighlightedInteractionBuildings;                   // 0x1AE0(0x10)(ZeroConstructor, Transient, Protected, NativeAccessSpecifierProtected)
+	TWeakObjectPtr<class ABuildingActor>         HighlightedPrimaryBuilding;                        // 0x1AF0(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TSoftObjectPtr<class UMaterialInterface>     BuildPreviewMarkerParentMaterial;                  // 0x1AF8(0x28)(Transient, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TArray<class UMaterialInstanceDynamic*>      BuildPreviewMarkerMIDs;                            // 0x1B20(0x10)(ZeroConstructor, Transient, Protected, NativeAccessSpecifierProtected)
+	uint8                                        BuildPreviewRotationIterations;                    // 0x1B30(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14D4[0x3];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	uint8                                        bBuildPreviewMirrored : 1;                         // Mask: 0x1, PropSize: 0x10x1B34(0x1)(Transient, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        bBuildFree : 1;                                    // Mask: 0x2, PropSize: 0x10x1B34(0x1)(Net, Transient, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        bCraftFree : 1;                                    // Mask: 0x4, PropSize: 0x10x1B34(0x1)(Net, Transient, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        BitPad_1A9 : 5;                                    // Fixing Bit-Field Size  [ Dumper-7 ]
+	uint8                                        Pad_14D5[0x3];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	enum class EFortCostInfoTypes                CurrentCostInfoType;                               // 0x1B38(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14D6[0x7];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	TSubclassOf<class ABuildingSMActor>          CurrentBuildableClass;                             // 0x1B40(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TSubclassOf<class ABuildingSMActor>          PreviousBuildableClass;                            // 0x1B48(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	enum class EFortResourceLevel                CurrentResourceLevel;                              // 0x1B50(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	enum class EFortResourceType                 CurrentResourceType;                               // 0x1B51(0x1)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14D7[0x6];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	struct FLastBuildableState                   LastBuildableStateData;                            // 0x1B58(0x10)(Transient, IsPlainOldData, NoDestructor, Protected, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14D8[0xC0];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	TArray<struct FFortDamageNumberInfo>         QueuedDamageNumbers;                               // 0x1C28(0x10)(ZeroConstructor, Transient, ContainsInstancedReference, Protected, NativeAccessSpecifierProtected)
+	class AFortDamageNumbersActor*               DamageNumbersActor;                                // 0x1C38(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	class UInputComponent*                       EditModeInputComponent;                            // 0x1C40(0x8)(ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	class ABuildingSMActor*                      EditBuildingActor;                                 // 0x1C48(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	float                                        EditModeDistance;                                  // 0x1C50(0x4)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	struct FVector                               LastBuildPreviewGridSnapLoc;                       // 0x1C54(0xC)(Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	struct FRotator                              LastBuildPreviewGridSnapRot;                       // 0x1C60(0xC)(Transient, IsPlainOldData, NoDestructor, Protected, NativeAccessSpecifierProtected)
+	struct FVector                               LastBuildPreviewGridSnapCentroid;                  // 0x1C6C(0xC)(Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	class UInputComponent*                       PickerInputComponent;                              // 0x1C78(0x8)(ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	class AFortDecoHelper*                       TrapPickerDecoHelper;                              // 0x1C80(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TArray<struct FHitResult>                    TouchEditResults;                                  // 0x1C88(0x10)(ZeroConstructor, ContainsInstancedReference, Protected, NativeAccessSpecifierProtected)
+	class AFortQuickBars*                        QuickBars;                                         // 0x1C98(0x8)(Net, ZeroConstructor, IsPlainOldData, RepNotify, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14D9[0xE0];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	TArray<class FString>                        PinnedSchematics;                                  // 0x1D80(0x10)(Net, ZeroConstructor, RepNotify, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14DA[0x1A0];                                   // Fixing Size After Last Property  [ Dumper-7 ]
+	uint8                                        bAutoEquipBetterItems : 1;                         // Mask: 0x1, PropSize: 0x10x1F30(0x1)(Net, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        BitPad_1AA : 7;                                    // Fixing Bit-Field Size  [ Dumper-7 ]
+	uint8                                        Pad_14DB[0x7];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	class AFortInventory*                        WorldInventory;                                    // 0x1F38(0x8)(Net, ZeroConstructor, IsPlainOldData, RepNotify, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	class AFortInventory*                        OutpostInventory;                                  // 0x1F40(0x8)(Net, ZeroConstructor, IsPlainOldData, RepNotify, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14DC[0x15C];                                   // Fixing Size After Last Property  [ Dumper-7 ]
+	bool                                         bHasInitializedWorldInventory;                     // 0x20A4(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bHasInitializedHeroInventory;                      // 0x20A5(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bAccountInventoryWasUpdated;                       // 0x20A6(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bIsSavingGadgetLoadout;                            // 0x20A7(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14DD[0x118];                                   // Fixing Size After Last Property  [ Dumper-7 ]
+	class UFortClientPilot_Base*                 BotPilot;                                          // 0x21C0(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14DE[0x18];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	class UFortClientBotManager*                 BotManager;                                        // 0x21E0(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14DF[0x8];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	TSubclassOf<class UFortClientBotManager>     ClientBotManagerClass;                             // 0x21F0(0x8)(Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14E0[0x78];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	bool                                         bDropWeaponsDuringAllMissionStates;                // 0x2270(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14E1[0x7F];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	struct FFortRewardReport                     LatestRewardReport;                                // 0x22F0(0x70)(Net, RepNotify, Protected, NativeAccessSpecifierProtected)
+	class UFortRegisteredPlayerInfo*             MyPlayerInfo;                                      // 0x2360(0x8)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	TArray<struct FFortUpdatedObjectiveStat>     UpdatedObjectiveStats;                             // 0x2368(0x10)(Net, ZeroConstructor, RepNotify, Protected, NativeAccessSpecifierProtected)
+	bool                                         bHasUnsavedPrimaryMissionProgress;                 // 0x2378(0x1)(Net, ZeroConstructor, IsPlainOldData, RepNotify, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14E2[0x27];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	class UStatManager*                          StatManager;                                       // 0x23A0(0x8)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class UHeartbeatManager*                     HeartbeatManager;                                  // 0x23A8(0x8)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class UFortStatEventManager*                 StatEventManager;                                  // 0x23B0(0x8)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	struct FFortPersistentGameplayStatContainer  CachedPersistentGameplayStats;                     // 0x23B8(0x10)(Protected, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14E3[0x10];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	class UMcpProfileGroup*                      McpProfileGroup;                                   // 0x23D8(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class UFortMcpProfileCommonPublic*           CommonPublicMcpProfile;                            // 0x23E0(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class UFortMcpProfileCommonCore*             CommonCoreMcpProfile;                              // 0x23E8(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class UFortMcpProfileCampaign*               MainMcpProfile;                                    // 0x23F0(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class UFortMcpProfileAthena*                 AthenaProfile;                                     // 0x23F8(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class UFortMcpProfileMetadata*               MetadataProfile;                                   // 0x2400(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bTutorialCompleted : 1;                            // Mask: 0x1, PropSize: 0x10x2408(0x1)(Net, Transient, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        BitPad_1AB : 7;                                    // Fixing Bit-Field Size  [ Dumper-7 ]
+	uint8                                        Pad_14E4[0x3];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	bool                                         bShouldReceiveCriticalMatchBonus;                  // 0x240C(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14E5[0x3];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	UMulticastDelegateProperty_                  OnServerPlayerChangedBuildMode;                    // 0x2410(0x10)(ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic)
+	UMulticastDelegateProperty_                  OnAutoRunEnabled;                                  // 0x2420(0x10)(ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14E6[0x3C];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	struct FVector                               LocationUnderReticle;                              // 0x246C(0xC)(Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bEnableVoiceChatPTT : 1;                           // Mask: 0x1, PropSize: 0x10x2478(0x1)(Transient, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        BitPad_1AC : 7;                                    // Fixing Bit-Field Size  [ Dumper-7 ]
+	uint8                                        Pad_14E7[0x37];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	uint8                                        bInfiniteAmmo : 1;                                 // Mask: 0x1, PropSize: 0x10x24B0(0x1)(Net, Transient, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bNoCoolDown : 1;                                   // Mask: 0x2, PropSize: 0x10x24B0(0x1)(Net, Transient, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bInfiniteDurability : 1;                           // Mask: 0x4, PropSize: 0x10x24B0(0x1)(Net, Transient, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bUsePickers : 1;                                   // Mask: 0x8, PropSize: 0x10x24B0(0x1)(Transient, Config, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bPickerOpen : 1;                                   // Mask: 0x10, PropSize: 0x10x24B0(0x1)(Transient, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bCheatGhost : 1;                                   // Mask: 0x20, PropSize: 0x10x24B0(0x1)(Net, Transient, RepNotify, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bCheatFly : 1;                                     // Mask: 0x40, PropSize: 0x10x24B0(0x1)(Net, Transient, RepNotify, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        BitPad_1AD : 1;                                    // Fixing Bit-Field Size  [ Dumper-7 ]
+	uint8                                        bEnableShotLogging : 1;                            // Mask: 0x1, PropSize: 0x10x24B1(0x1)(Net, Transient, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        bIsNearActiveEncounters : 1;                       // Mask: 0x2, PropSize: 0x10x24B1(0x1)(Net, Transient, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        BitPad_1AE : 6;                                    // Fixing Bit-Field Size  [ Dumper-7 ]
+	uint8                                        Pad_14E8[0x2];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	int32                                        OverriddenBackpackSize;                            // 0x24B4(0x4)(Net, ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint32                                       AimHelpMode;                                       // 0x24B8(0x4)(Net, ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	enum class EFortJumpStaminaCost              JumpStaminaCost;                                   // 0x24BC(0x1)(Net, ZeroConstructor, Transient, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14E9[0x3];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	class FName                                  CameraPrototypeName;                               // 0x24C0(0x8)(Net, ZeroConstructor, Transient, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14EA[0x10];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	bool                                         bShowDamageNumbersOnFatalHit;                      // 0x24D8(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool                                         bHideHudEnglishText;                               // 0x24D9(0x1)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool                                         bTurboBuild;                                       // 0x24DA(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14EB[0x1];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	float                                        TurboBuildInterval;                                // 0x24DC(0x4)(ZeroConstructor, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool                                         bAutoChangeMaterial;                               // 0x24E0(0x1)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        Pad_14EC[0x3];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	float                                        MinEmoteCooldown;                                  // 0x24E4(0x4)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	float                                        EmoteOffCooldownTime;                              // 0x24E8(0x4)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	float                                        MinSprayCooldown;                                  // 0x24EC(0x4)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	float                                        SprayOffCooldownTime;                              // 0x24F0(0x4)(ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14ED[0x4];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	TArray<class AFortSprayDecalInstance*>       ActiveSprayInstances;                              // 0x24F8(0x10)(ZeroConstructor, Protected, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14EE[0x110];                                   // Fixing Size After Last Property  [ Dumper-7 ]
+	class ABuildingSMActor*                      PendingEnterModeActor;                             // 0x2618(0x8)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	int32                                        RandomCharacterIndex;                              // 0x2620(0x4)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	float                                        AntiAddictionPlayTimeMultiplier;                   // 0x2624(0x4)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14EF[0x1C];                                    // Fixing Size After Last Property  [ Dumper-7 ]
+	struct FLockOnInfo                           LockOnInfo;                                        // 0x2644(0x38)(Transient, NoDestructor, Protected, NativeAccessSpecifierProtected)
+	uint8                                        Pad_14F0[0x4];                                     // Fixing Size Of Struct [ Dumper-7 ]
+
+	static class UClass* StaticClass()
+	{
+		static class UClass* Clss = UObject::FindClassFast("FortPlayerController");
+		return Clss;
+	}
+
+	void TogglePersonalVehicle(bool bOn);
+	void ToggleInventory();
+	void ToggleFullScreenMap();
+	void ToggleClientBot();
+	void SwapQuickBarFocus(enum class EFortQuickBars InQuickBar);
+	void SuppressEventNotifications(bool bSuppress);
+	void Suicide();
+	bool StartReadyCheck(class FText QueryText, class FText YesText, class FText NoText, float PercentageToPass);
+	void SetRotatePawnToCamera(bool bNewRotatePawnToCamera);
+	void SetLockOnTargetStickCoords(struct FVector2D& Coords);
+	void SetInputYawScale(float InInputYawScale);
+	void SetInputPitchScale(float InInputPitchScale);
+	void SetFullscreenMapVisible(bool Visible);
+	void SetFirstPersonCamera(bool bNewUseFirstPersonCamera);
+	void SetCinematicOverrideClass(TSubclassOf<class UFortCinematicCamera> OverrideCameraClass);
+	void SetCinematicModeWithWeapon(bool bInCinematicMode, bool bHidePlayer, bool bHideWeapon, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning);
+	void SetAutoFireFromReticleMode(bool bAutoFireOn);
+	void SetAtNameHomeBaseScreen(bool AtScreen);
+	void ServerUpgradeBuildingActor(class ABuildingActor* BuildingActorToUpgrade, int32 NewUpgradeLevel);
+	void ServerUIChoiceCompleted(int32 ChosenItem, int32 MenuIdentifier);
+	void ServerTriggerGenericObjectiveEvent(class AFortObjectiveBase* Objective);
+	void ServerTriggerCombatEventBatch(TArray<struct FFortCombatManagerEvent>& Payload);
+	void ServerTriggerCombatEvent(enum class EFortCombatEvents TriggeredEvent, float HeatMultiplier);
+	void ServerTouchActiveTime();
+	void ServerTeleportToReticle(const struct FVector& TeleportLocation);
+	void ServerTeamChatRoomReady(const class FString& ChatRoomId);
+	void ServerSuicide();
+	void ServerStartPIDValueGraphing();
+	void ServerStartPIDContributionsGraphing();
+	void ServerStartIntensityGraphing();
+	void ServerSpotActor(class AActor* NewlySpottedActor);
+	void ServerSpawnMark(class AActor* ActorToAttachTo, const struct FVector& AttachOffset, class FText& PreapprovedText);
+	void ServerSetReadyToContinue(bool bReady, enum class EFortGameplayState RequestedState, bool bTryStartTimer);
+	void ServerSetPartyOwner(struct FUniqueNetIdRepl& PartyOwnerUniqueId);
+	void ServerSetMarkText(class AFortMarkActor* MarkActor, const class FString& MarkText);
+	void ServerSetInventoryStateValue(const struct FGuid& ItemGuid, const struct FFortItemEntryStateValue& StateValue);
+	void ServerSetHero(const class FString& NewHeroID);
+	void ServerSetClientHasFinishedLoading(bool bInHasFinishedLoading);
+	void ServerSetAutoEquipBetterItems(bool bAutoEquip);
+	void ServerSetAntiAddictionPlayTimeMultiplier(float NewPlayTimeRewardRate);
+	void ServerSendClientProgressUpdate(int32 ClientProgressState, TArray<uint64>& ClientProgressUpdate);
+	void ServerReturnToMainMenu();
+	void ServerRequestGameplayAction(enum class EFortRequestedGameplayAction RequestedAction);
+	void ServerRequestAttributeSources(const struct FGameplayAttribute& Attribute, class UFortAbilitySystemComponent* AbilitySystemComponent);
+	void ServerRequestAIDebug();
+	void ServerReportClientFPS(float ClientAvgFPS, uint8 ClientAvgFrameScore, uint8 ClientMaxFrameScore);
+	void ServerReplyToReadyCheck(bool bReady);
+	void ServerRepairBuildingActor(class ABuildingSMActor* BuildingActorToRepair);
+	void ServerRemoveInventoryStateValue(const struct FGuid& ItemGuid, enum class EFortItemEntryState StateValueType);
+	void ServerRemoveInventoryItem(const struct FGuid& ItemGuid, int32 Count, bool bForceRemoveFromQuickBars, bool bForceRemoval);
+	void ServerRemoveDefender(class ABuildingTrapDefender* DefenderTrap);
+	void ServerReleaseInventoryItemKey(enum class EFortQuickBars InQuickBar, int32 Slot);
+	void ServerReadyToStartMatch();
+	void ServerPlaySprayItem(class UAthenaSprayItemDefinition* SprayAsset);
+	void ServerPlayEmoteItem(class UFortMontageItemDefinitionBase* EmoteAsset);
+	void ServerPingMinimap(const struct FVector& WorldLocation, const struct FLinearColor& PingColor, enum class EFortTeam RequiredTeam);
+	void ServerModifyStat(class FName StatName, int32 Amount, enum class EStatMod ModType, bool bForceStatSave);
+	void ServerModDurability(const struct FGuid& ItemGuid, float DurabilityMod, bool bForceSet);
+	void ServerLoadingScreenDropped();
+	void ServerKillAllAIPawnsAroundPlayer();
+	void ServerKickPlayer(struct FUniqueNetIdRepl& PlayerToKick, class FText& Reason);
+	void ServerItemWillBeDestroyed(const struct FGuid& DestroyedItemGuid, int32 Count);
+	void ServerHandleMissionEvent_ToggledEditMode(class AFortPlayerController* PlayerThatToggledEditMode, class ABuildingSMActor* EditableActor, bool bOpened);
+	void ServerHandleMissionEvent_ToggledCursorMode(class AFortPlayerController* PlayerThatToggledCursorMode, bool bOpened);
+	void ServerHandleMissionEvent_StartLeavingZone();
+	void ServerGiftInventoryItemToOtherPlayer(const struct FGuid& ItemGuid, const struct FUniqueNetIdRepl& PlayerID, int32 Quantity);
+	void ServerExecutePresetTeamChat(class FText& ChatText, const struct FUniqueNetIdRepl& SenderID);
+	void ServerExecuteInventoryItem(const struct FGuid& ItemGuid);
+	void ServerEndEditingBuildingActor(class ABuildingSMActor* BuildingActorToStopEditing);
+	void ServerEmote(class FName& AssetName);
+	void ServerEditBuildingActor(class ABuildingSMActor* BuildingActorToEdit, TSubclassOf<class ABuildingSMActor> NewBuildingClass, int32 RotationIterations, bool bMirrored);
+	void ServerDropCarriedObject();
+	void ServerDropAllItems(class UFortItemDefinition* IgnoreItemDef);
+	void ServerDisassembleInventoryItems(TArray<struct FGuid>& ItemGuids, TArray<int32>& ItemCounts);
+	void ServerDeployDefender(class ABuildingTrapDefender* DefenderTrap, const class FString& SelectedItemInstanceId, class FName& DefenderSquadId, const struct FGuid& WeaponToGiveGuid, int32 AmmoQuantity);
+	void ServerCreateCombatManager();
+	void ServerCreateBuildingActor(const struct FBuildingClassData& BuildingClassData, const struct FVector_NetQuantize10& BuildLoc, const struct FRotator& BuildRot, bool bMirrored);
+	void ServerCreateAIDirectorDataManager();
+	void ServerCraftSchematic(const class FString& ItemId, int32 PostCraftSlot, bool bIsQuickCrafted);
+	void ServerClientPawnLoaded(bool bIsPawnLoaded);
+	void ServerCheatAll(const class FString& Msg);
+	void ServerCheat(const class FString& Msg);
+	void ServerBroadcastUIFeedbackEvent(class FName EventName);
+	void ServerBeginEditingBuildingActor(class ABuildingSMActor* BuildingActorToEdit);
+	void ServerAttemptUnpinSchematic(const class FString& ItemId, bool bSave);
+	void ServerAttemptPinSchematic(const class FString& ItemId, bool bSave);
+	void ServerAttemptInventoryDrop(const struct FGuid& ItemGuid, int32 Count);
+	void ServerAttemptInteract(class AActor* ReceivingActor, class UPrimitiveComponent* InteractComponent, enum class ETInteractionType InteractType, class UObject* OptionalObjectData);
+	void ServerAnnouncementStoppedOnClient(const struct FGuid& AnnouncementId);
+	void ServerAddPawnMovementInput(class AFortPawn* InChar, const struct FVector& WorldDirection, float ScaleValue, bool bForce);
+	void SendMessage(class FText& MESSAGE);
+	void ReturnToMainMenu();
+	void ResetInputRotationScale();
+	void RemoveItemFromQuickBars(class UFortItemDefinition* ItemDefinition);
+	void PrintEventInfo();
+	void PrintDebugInfo();
+	void PostHeroStatSkillPointsEarned(int32 NumSkillPoints);
+	void PostHeroStatMissionCompleted(int32 DifficultyRating);
+	void PostHeroStatCollectionBookProgressMade(int32 LevelReached);
+	void PlaySprayItem(class UAthenaSprayItemDefinition* SprayAsset);
+	void PlaySpatialSound(class USoundBase* Sound, const struct FVector& Location);
+	void PlayEmoteItem(class UFortMontageItemDefinitionBase* EmoteAsset);
+	void OpenChoiceUI(const struct FChoiceData& ChoiceData);
+	void OnRep_UpdatedUnsavedPrimaryMissionProgress();
+	void OnRep_UpdatedObjectiveStats();
+	void OnRep_QuickBar();
+	void OnRep_PinnedSchematics();
+	void OnRep_PIDValuesGraphInfo();
+	void OnRep_PIDContributionsGraphInfo();
+	void OnRep_LatestRewardReport();
+	void OnRep_IntensityGraphInfo();
+	void OnRep_CombatManager();
+	void OnRep_CheatMovement();
+	void OnRep_bHasServerFinishedLoading();
+	void OnDisplayHitMarker(struct FGameplayTagContainer& HitTags, enum class EFortDamageZone Zone);
+	void LocalStopForceFeedback(class UForceFeedbackEffect* ForceFeedbackEffect, class FName Tag);
+	void LocalPlayForceFeedback(class UForceFeedbackEffect* ForceFeedbackEffect, bool bLooping, class FName Tag);
+	void LocalOnUiChoiceCompleted(int32 ChosenItem, int32 MenuIdentifier);
+	void LocalOnBlueprintEdit(class ABuildingSMActor* EditedActor);
+	class UFortItem* K2_GetInventoryItemWithGuid(const struct FGuid& ItemGuid);
+	class UFortInteractContextInfo* K2_GetInteractResponse();
+	class UFortItem* K2_FindExistingItemForDefinition(class UFortItemDefinition* ItemDefinition, bool bInStorageVault);
+	bool IsUsingTouch();
+	bool IsUsingGamepad();
+	bool IsUsingFirstPersonCamera();
+	bool IsRequirementsMet(struct FFortRequirementsInfo& InRequirements);
+	bool IsPlayingEmote();
+	bool IsPersonalVehicleAvailable();
+	bool IsPersonalVehicleActive();
+	bool IsNearActiveEncounters();
+	bool IsInBuildMode();
+	bool IsClientTimingOut();
+	bool IsClientBot();
+	bool IsAutoFireFromReticleModeEnabled();
+	bool IsActionInputIgnored();
+	void HideFullScreenMap();
+	bool HasLockOnTarget();
+	void HandleWorldInventoryLocalUpdate();
+	void HandleOutpostInventoryLocalUpdate();
+	void GivePlayerAmmo(int32 AmmoCount);
+	bool GetRotatePawnToCamera();
+	class UFortRegisteredPlayerInfo* GetRegisteredPlayerInfo();
+	class UAthenaCharacterItemDefinition* GetRandomDefaultAthenaCharacterDefinition(class UFortMcpProfileAthena* McpAthenaProfile);
+	class UFortQuestManager* GetQuestManager(enum class ESubGame SubGame);
+	class AFortPlayerPawn* GetPlayerPawn();
+	enum class ELockOnState GetLockOnState();
+	struct FUniqueNetIdRepl GetGameAccountId();
+	bool GetForceAllowCameraMode();
+	class UFortCollectionBookManager* GetCollectionBookManager();
+	class UFortAwardManager* GetAwardManager(enum class ESubGame SubGame);
+	bool GetAtNameHomeBaseScreen();
+	class AFortAIDirectorDataManager* GetAIDirectorDataManager();
+	class AActor* GetActorUnderReticle();
+	int32 GetAccountLevel();
+	class UFortAccountItem* GetAccountItem(const class FString& ID);
+	void FortClientPlaySoundAtLocation(class USoundBase* Sound, const struct FVector& Location, float VolumeMultiplier, float PitchMultiplier);
+	void FortClientPlaySound(class USoundBase* Sound, float VolumeMultiplier, float PitchMultiplier);
+	void ForceUpdateQuickbar(enum class EFortQuickBars QuickbarToRefresh);
+	void FixupInteractionWidgetsOnUnzoom();
+	void Emote(class FName& AssetName);
+	void DumpHomebaseRatingInfo();
+	void DropAllItems(class UFortItemDefinition* IgnoreItemDef);
+	void DeployDefender(class ABuildingTrapDefender* DefenderTrap, class UFortDefenderItem* DefenderItem, class FName& DefenderSquadId, class UFortItem* WeaponItem, int32 AmmoQuantity);
+	void ClientUpdateRichPresence(enum class ERichPresenceStateChange RichPresenceChange, bool bImportant);
+	void ClientUpdatePlayerList();
+	void ClientTriggerUIFeedbackEvent(class FName EventName);
+	void ClientStopUIFeedbackEvent(class FName EventName);
+	void ClientStayWithParty(bool bStayWithParty);
+	void ClientSpawnWeakSpotOnBuildingActor(const struct FBuildingWeakSpotData& ReplicatedWeakSpotData);
+	void ClientSetSpectatorCamera(const struct FVector& CameraLocation, const struct FRotator& CameraRotation);
+	void ClientSetInviteFlags(struct FJoinabilitySettings& Settings);
+	void ClientSetActionMappingEnabled(class FName ActionName, bool bEnabled);
+	void ClientSendMessage(class FText& MESSAGE);
+	void ClientSendConfirmationMessage(class FText& ConfirmationMessage, bool bClientQuitAfterMessage);
+	void ClientResendLoadoutConfig(bool bPrepareLoadoutConfig, bool bRequestPlayerList);
+	void ClientRequestReadyCheck(class FText& QueryText, class FText& YesText, class FText& NoText);
+	void ClientReportInventoryLogs();
+	void ClientReportDamagedResourceBuilding(class ABuildingSMActor* BuildingSMActor, enum class EFortResourceType PotentialResourceType, int32 PotentialResourceCount, bool bDestroyed, bool bJustHitWeakspot);
+	void ClientRegisterWithParty();
+	void ClientRefreshPlayerList();
+	void ClientReceivePresetTeamChat(class FText& ChatText, const struct FUniqueNetIdRepl& SenderID);
+	void ClientReceivedAttributeSources(const struct FGameplayAttribute& Attribute, class UFortAbilitySystemComponent* AbilitySystemComponent, TArray<struct FAttributeModifierInfo>& Sources);
+	void ClientReadyCheckComplete(bool bPassed);
+	void ClientPingMinimap(const struct FVector& WorldLocation, const struct FLinearColor& PingColor);
+	void ClientOpenChoiceUI(const struct FChoiceData& ChoiceItems);
+	void ClientOnGenericPlayerInitialization();
+	void ClientJoinConsoleSession(const class FString& ConsoleSession);
+	void ClientGivePlayerLocalAccountItem(class UFortAccountItemDefinition* ItemDefinition, int32 Count);
+	void ClientForceProfileQuery();
+	void ClientForceCancelBuildingTool();
+	void ClientFinishedInteractionInZone();
+	void ClientExecuteInventoryItem(const struct FGuid& ItemGuid, float Delay, bool bForceExecute, bool bActivateSlotAfterSettingFocused);
+	void ClientCreateOrJoinChatRoom(const class FString& ChatRoomId);
+	void ClientCancelCrafting();
+	void ClientAddScoreNumber(int32 Score, enum class EStatCategory ScoreCategory, struct FVector_NetQuantize& ScoreLocation, bool bDisplayScoreOnPlayer);
+	void ClientAddHeroSpecialization(class UFortHeroSpecialization* NewSpecialization);
+	void CheatAll(const class FString& Msg);
+	void Cheat(const class FString& Msg);
+	void AddItemToQuickBars(class UFortItemDefinition* ItemDefinition, enum class EFortQuickBars QuickBarType, int32 SlotIndex);
+	void ActivateSlot(enum class EFortQuickBars InQuickBar, int32 Slot, float ActivateDelay, bool bUpdatePreviousFocusedSlot);
+};

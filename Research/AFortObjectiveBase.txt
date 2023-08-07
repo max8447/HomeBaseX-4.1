@@ -1,0 +1,66 @@
+// 0x98 (0x3E8 - 0x350)
+// Class FortniteGame.FortObjectiveBase
+class AFortObjectiveBase : public AFortMissionState
+{
+public:
+	class UFortBadgeItemDefinition*              ObjectiveRewardBadge;                              // 0x350(0x8)(ZeroConstructor, SaveGame, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	TArray<class UFortWorldItemDefinition*>      ItemsToGiveOnObjectiveStart;                       // 0x358(0x10)(Edit, ZeroConstructor, NativeAccessSpecifierPublic)
+	bool                                         bStartPlayingOnMissionStart;                       // 0x368(0x1)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool                                         bAcceptsMissionEventsWhenFinished;                 // 0x369(0x1)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                        Pad_192B[0x6];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	struct FGameplayTagContainer                 ObjectiveHandle;                                   // 0x370(0x20)(BlueprintVisible, BlueprintReadOnly, Net, SaveGame, NativeAccessSpecifierPublic)
+	class FString                                ObjectiveAnalyticsName;                            // 0x390(0x10)(Edit, BlueprintVisible, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	enum class EFortObjectiveRequirement         MissionRequirement;                                // 0x3A0(0x1)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, EditConst, SaveGame, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool                                         bIsObjectiveVisible;                               // 0x3A1(0x1)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, SaveGame, IsPlainOldData, RepNotify, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	enum class EFortMissionVisibilityOverride    VisibilityOverride;                                // 0x3A2(0x1)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, SaveGame, IsPlainOldData, RepNotify, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bIsProgressBarHidden;                              // 0x3A3(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, SaveGame, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	enum class EFortMissionAudibility            ObjectiveAudiblity;                                // 0x3A4(0x1)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, SaveGame, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	bool                                         bRelevantToSpecificTeam;                           // 0x3A5(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	enum class EFortTeam                         RelevantTeam;                                      // 0x3A6(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	enum class EFortObjectiveStatus              ObjectiveStatus;                                   // 0x3A7(0x1)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, SaveGame, IsPlainOldData, RepNotify, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+	uint8                                        Pad_192C[0x8];                                     // Fixing Size After Last Property  [ Dumper-7 ]
+	class UFortMissionTimerComponent*            TimerComponent;                                    // 0x3B0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
+	UMulticastDelegateProperty_                  OnObjectiveStatusChanged;                          // 0x3B8(0x10)(ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic)
+	UMulticastDelegateProperty_                  OnObjectiveVisibilityChanged;                      // 0x3C8(0x10)(ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic)
+	UMulticastDelegateProperty_                  OnObjectiveVisibilityOverrideChanged;              // 0x3D8(0x10)(ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic)
+
+	static class UClass* StaticClass()
+	{
+		static class UClass* Clss = UObject::FindClassFast("FortObjectiveBase");
+		return Clss;
+	}
+
+	void UnpauseObjectiveTimer();
+	void StopObjective(enum class EFortObjectiveStatus Status, const class FString& Description, class UFortBadgeItemDefinition* ExtraBadgeToGrant);
+	bool StartPlayingObjective();
+	void SetUIVisibilityOverride(enum class EFortMissionVisibilityOverride InVisibilityOverride);
+	void SetUiVisibility(bool bInIsObjectiveVisible);
+	void SetObjectiveTimer(const class FString& FunctionName, float TimerLength, bool bStartPaused);
+	void PauseObjectiveTimer();
+	void OnRep_ObjectiveVisibilityOverride();
+	void OnRep_ObjectiveStatus();
+	void OnRep_bIsObjectiveVisible();
+	void OnGenericObjectiveEvent();
+	bool IsRelevantToTeam(enum class EFortTeam Team);
+	bool IsRelevantToASpecificTeam();
+	bool IsObjectiveTimerPaused();
+	void GrantRewardsByTag(const struct FGameplayTag& RewardTag, enum class EFortRewardType RewardType);
+	class UFortMissionTimerComponent* GetTimerComponent();
+	void GetRewardItemsByTag(const struct FGameplayTag& RewardTag, TArray<class UFortWorldItemDefinition*>* OutRewardItems);
+	float GetObjectiveTimerTimeRemaining();
+	class FText GetObjectiveDisplayString();
+	struct FGuid GetMissionGuid();
+	class AFortMission* GetMission();
+	void EnableTick(bool bEnabled);
+	void ClearObjectiveTimer();
+	void BlueprintPostObjectiveLoad();
+	void BlueprintOnStartPlaying();
+	void BlueprintOnObjectiveEnd(enum class EFortObjectiveStatus Status);
+	void BlueprintOnActivated();
+	class FText BlueprintGetProgressBarText(int32 ProgressBarIdx);
+	float BlueprintGetProgressBarPercentage(int32 ProgressBarIdx);
+	struct FLinearColor BlueprintGetProgressBarColor(int32 ProgressBarIdx);
+	class FText BlueprintGetObjectiveDisplayText();
+	int32 BlueprintGetNumProgressBars();
+	void AttemptMissionSave(const class FString& OptionalSaveName);
+};
